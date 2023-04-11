@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  nginx-master:
+    image: nginx
+    volumes:
+      - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/servers:/etc/nginx/conf.d
+      - ./nginx/errors/erro.html:/usr/share/nginx/html/erro.html
+      - ./data/html/master:/usr/share/nginx/html/master
+            
+    ports:
+      - "80:80"
+    environment:
+      - NGNIX_HOST=example.com
+      - NGINX_PORT=80

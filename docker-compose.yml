@@ -7,13 +7,8 @@ services:
       - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/servers:/etc/nginx/conf.d
       - ./nginx/errors/erro.html:/usr/share/nginx/html/erro.html
-      - ./data/html/master:/usr/share/nginx/html/master
-    ports:
-      - "80:80"      
+      - ./data/html/master:/usr/share/nginx/html/master  
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nginx-master.entrypoints=websecure"
       - "traefik.http.routers.nginx-master.rule=Host(`srvmail.nicoledepaula.adv.br`)"
-      - "traefik.http.routers.nginx-master.tls.certresolver=myresolver"
-      - "traefik.http.routers.nginx-master.tls=true"
       - "traefik.http.services.nginx-master.loadbalancer.server.port=80"
